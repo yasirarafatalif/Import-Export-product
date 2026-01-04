@@ -1,16 +1,98 @@
-# React + Vite
+# 📦 Import-Exports: Product Exchange Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a web application through which users can view various products, **import** them for personal use, and **export** (sell or supply) new products to the platform.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Key Features
 
-## React Compiler
+### **Extensive Catalog**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+A simple and beautiful presentation of all available products.
 
-## Expanding the ESLint configuration
+### **Product Import**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Users can add any product to their personal list or stock.
+
+### **Product Export**
+
+Users can upload their own products to the platform to offer them for sale or supply to others.
+
+### **User Authentication**
+
+Secure sign-up, login, and logout system using **Firebase Authentication**.
+
+### **Fast and Responsive UI**
+
+Fast-loading and responsive interface suitable for all devices, built with **Tailwind CSS** and **React**.
+
+---
+
+## 🛠️ Tech Stack
+
+### **Frontend**
+
+* **React.js** – JavaScript library for building user interfaces.
+* **Tailwind CSS** – Utility-first CSS framework for fast and maintainable styling.
+* **React Router** – For managing client-side routing.
+
+### **Services**
+
+* **Firebase** – Used for Firestore database and authentication, accessed directly from the frontend.
+
+---
+
+## 🚀 Installation & Setup
+
+Follow the steps below to run this project locally on your system.
+
+### **1. Clone the Repository**
+
+```bash
+git clone https://github.com/yasiralif/Import-Export-product.git
+cd import-exports
+```
+
+### **2. Install Dependencies**
+
+```bash
+npm install
+```
+
+### **3. Set Environment Variables (.env)**
+
+Create a `.env` file in the project root and add your Firebase configuration:
+
+```
+# Firebase Configuration (Replace with your actual values)
+VITE_FIREBASE_API_KEY="AIzaSy..."
+VITE_FIREBASE_AUTH_DOMAIN="import-exports.firebaseapp.com"
+VITE_FIREBASE_PROJECT_ID="import-exports"
+# ... other Firebase configurations
+```
+
+### **4. Run the Project**
+
+```bash
+npm run dev
+# or
+npm start
+```
+
+The application will typically run at:
+
+```
+http://localhost:3000
+```
+
+---
+
+## 🤝 Contributing
+
+If you wish to contribute to this project, please create a pull request. Before making major changes, please open an issue or start a discussion.
+
+---
+
+## © Credits
+
+© [Yasir Arafat Alif]
