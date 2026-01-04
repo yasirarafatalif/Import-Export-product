@@ -1,0 +1,47 @@
+import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router';
+import useAuth from './useAuth';
+const axiosSecure = axios.create({
+  baseURL: 'https://new-2-swart.vercel.app'
+  // baseURL: 'http://localhost:3000'
+
+}
+);
+const useAxios = () => {
+  const {user,logOut}= useAuth();
+  const navigate = useNavigate();
+  useEffect(()=>{
+    const interceptor =axiosSecure.interceptors.request.use(config=>{
+      config.headers.Authorization= `Bearer ${user?.accessToken}`
+      return config
+    })
+
+    //respone intercepteros
+    const responeInterceptor = axiosSecure.interceptors.response.use((response)=>{
+      return response
+    },
+    (error)=>{
+      const statusCode = error.status
+      if(statusCode== 401 || statusCode== 403){
+        // logOut()
+        // .then(()=>{
+        //   navigate('/login')
+        // })
+        
+      }
+      
+      return Promise.reject(error)
+    }
+  )
+    return ()=>{
+      axiosSecure.interceptors.request.eject(interceptor);
+      axiosSecure.interceptors.request.eject(responeInterceptor);
+    }
+
+
+  },[user])
+  return axiosSecure;
+};
+
+export default useAxios;

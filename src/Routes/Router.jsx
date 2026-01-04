@@ -22,12 +22,12 @@ const Router = createBrowserRouter([
         children: [
             {
                 index: true, Component: Home,
-                loader: () => fetch('https://new-2-swart.vercel.app/latest-products')
+                // loader: () => fetch('https://new-2-swart.vercel.app/latest-products')
 
             },
             {
                 path: '/all-products',
-                loader: () => fetch('https://new-2-swart.vercel.app/all-products'),
+                // loader: () => fetch('https://new-2-swart.vercel.app/all-products'),
                 element: <PrivateRoutes>
                     <AllProducts></AllProducts>
                 </PrivateRoutes>
@@ -51,12 +51,6 @@ const Router = createBrowserRouter([
             },
             { path: '/login', element: <LogIn></LogIn> },
             { path: '/singup', element: <SingUp></SingUp> },
-            // {
-            //     path:'/all-product/:id', 
-
-            //     loader:({params})=>fetch(`https://new-2-swart.vercel.app/all-products/${params.id}`),
-            //     element:<AllProductsDetalis></AllProductsDetalis>
-            // },
             {
                 path: "/all-product/:id", Component: Pet,
                 loader: ({ params }) => fetch(`https://new-2-swart.vercel.app/all-products/${params.id}`),

@@ -11,7 +11,7 @@ const Input = ({ value, onChange }) => {
           </svg>
         </button>
 
-        {/* 👉 এই জায়গায় value এবং onChange বসবে */}
+   
         <input
           className="input"
           placeholder="Type your text"
