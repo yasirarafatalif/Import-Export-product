@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 
 const HomeSixCardSection = ({ homeData, isLoading }) => {
   return (
-    <section className="relative bg-[#f8fafc] py-20 overflow-hidden">
+    <section className="relative bg-[#f8fafc] dark:bg-base-100 py-20 overflow-hidden">
       
       {/* Decorative Background Elements */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
@@ -22,7 +22,7 @@ const HomeSixCardSection = ({ homeData, isLoading }) => {
               <span className="h-px w-12 bg-indigo-600"></span>
               <span className="text-indigo-600 font-semibold tracking-widest uppercase text-xs">Premium Selection</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
               Curated items for your <br />
               <span className="bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">
                 Modern Lifestyle
@@ -53,7 +53,7 @@ const HomeSixCardSection = ({ homeData, isLoading }) => {
                   }}
                 >
                   {/* Subtle card glow on hover */}
-                  <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-[2.5rem] blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+                  <div className="absolute -inset-1 hover:scale-105 rounded-[2.5rem] blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
                   
                   <div className="relative bg-white rounded-[2rem]">
                     <Card
@@ -64,7 +64,7 @@ const HomeSixCardSection = ({ homeData, isLoading }) => {
                       title={data.name}
                       description={data.description}
                       buttonText="See Details"
-                      link={`/product/${data._id}`}
+                      link={`/all-product/${data._id}`}
                       image={data.image_link}
                     />
                   </div>

@@ -12,7 +12,7 @@ const AllProducts = () => {
   const { data: allCradData = [], isLoading: allCardLoading } = useQuery({
     queryKey: ['allCradData'],
     queryFn: async () => {
-      const res = await axiosSecure.get('/latest-products');
+      const res = await axiosSecure.get('/all-products');
       return res.data;
     },
   });
@@ -29,7 +29,7 @@ const AllProducts = () => {
     <div className="min-h-screen bg-slate-50">
 
       {/* Header (Always Visible) */}
-      <div className="sticky top-0 z-20 bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm">
+      <div className="sticky top-10 z-20 bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm">
         <div className="w-11/12 mx-auto py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div>
@@ -60,7 +60,7 @@ const AllProducts = () => {
         {/* Skeleton */}
         {allCardLoading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {Array.from({ length: 6 }).map((_, index) => (
+            {Array.from({ length: 12 }).map((_, index) => (
               <CardSkeleton key={index} />
             ))}
           </div>
@@ -76,7 +76,7 @@ const AllProducts = () => {
                 title={item.name}
                 description={item.description}
                 buttonText="See Details"
-                link={`/product/${item._id}`}
+                link={`/all-product/${item._id}`}
                 image={item.image_link}
               />
             ))}

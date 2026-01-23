@@ -6,6 +6,7 @@ import useAxios from "../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import Slider from "react-slick";
 import HomeSlider from "../Components/Slider/HomeSlider";
+import HomeStats from "./HomeStats";
 
 const Home = () => {
   const axiosSecure = useAxios();
@@ -28,6 +29,7 @@ const Home = () => {
         homeData={homeData}
         isLoading={isLoading}
       ></HomeSixCardSection>
+      <HomeStats></HomeStats>
 
       <FashionBanner></FashionBanner>
     </div>

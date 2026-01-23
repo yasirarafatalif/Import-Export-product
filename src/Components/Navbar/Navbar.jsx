@@ -1,23 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router';
-import { CircleUser, Sun, Moon } from 'lucide-react';
-import './Navbar.css'
-import { AuthContext } from '../../Context/AuthContext';
-import Uniberbutton from '../Button/UniberButton/Uniberbutton';
-import toast from 'react-hot-toast';
+import React, { useContext, useEffect, useState } from "react";
+import { Link, NavLink } from "react-router";
+import { AuthContext } from "../../Context/AuthContext";
+import { Sun, Moon, LogOut, LayoutGrid, PlusCircle, Globe } from "lucide-react";
+import toast from "react-hot-toast";
+import Logo from "../Logo/Logo";
+import { FaHome } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, singOut } = useContext(AuthContext);
   const [theme, setTheme] = useState("light");
 
-  // load theme
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "light";
     setTheme(savedTheme);
     document.documentElement.setAttribute("data-theme", savedTheme);
   }, []);
 
-  // toggle theme
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
@@ -25,106 +23,127 @@ const Navbar = () => {
     document.documentElement.setAttribute("data-theme", newTheme);
   };
 
-  const handelLogout = () => {
-    singOut()
-      .then(() => toast.success("You Are Successfully Logged Out"))
-      .catch(err => toast.error(err.code));
-  };
+  const navLinks = [
+    { name: "Home", path: "/", icon: <FaHome size={14} /> },
+    { name: "Products", path: "/all-products", icon: <LayoutGrid size={14} /> },
+    { name: "Exports", path: "/my-exports" },
+    { name: "Imports", path: "/my-import" },
+  ];
 
   return (
-    <div>
-      <div className="navbar font-poppins  dark:text-white bg-[#616053] text-base-100 shadow-sm">
+    <nav className="sticky top-0 z-50 w-full bg-white dark:bg-black border-b border-gray-200 dark:border-white/10 font-sans">
+      <div className="max-w-[1400px] mx-auto flex items-center h-16 px-4 sm:px-6">
+        {/* LEFT: Branding */}
+        <div className="flex items-center gap-6 h-full">
+          <Logo></Logo>
 
-        {/* START */}
-        <div className="navbar-start">
-          <div className="dropdown dark:text-white">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5"
-                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round"
-                  strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
-              </svg>
-            </div>
-
-            <ul
-              tabIndex="-1"
-              className="menu dark:text-white z-10 menu-sm dropdown-content bg-base-100 text-black rounded-box mt-3 w-52 p-2 shadow"
-            >
-              <li><NavLink to="/">Home</NavLink></li>
-              <li><NavLink to="/all-products">All Products</NavLink></li>
-              <li><NavLink to="/my-exports">My Exports</NavLink></li>
-              <li><NavLink to="/my-import">My Imports</NavLink></li>
-              <li><NavLink to="/add-export">Add Export</NavLink></li>
-            </ul>
+          {/* DESKTOP LINKS */}
+          <div className="hidden lg:flex items-center gap-8 h-full">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.path}
+                to={link.path}
+                className={({ isActive }) => `
+                  relative flex items-center gap-2 text-[13px] font-bold uppercase tracking-widest transition-colors h-full
+                  ${isActive ? "text-black dark:text-white" : "text-gray-400 hover:text-black dark:hover:text-white"}
+                  after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-black dark:after:bg-white after:scale-x-0 
+                  ${isActive ? "after:scale-x-100" : "hover:after:scale-x-100"} after:transition-transform after:duration-300
+                `}
+              >
+                {link.icon && <span>{link.icon}</span>}
+                {link.name}
+              </NavLink>
+            ))}
           </div>
-
-          <a className="btn btn-ghost text-xl">
-            <Uniberbutton />
-          </a>
         </div>
 
-        {/* CENTER */}
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/all-products">All Products</NavLink></li>
-            <li><NavLink to="/my-exports">My Exports</NavLink></li>
-            <li><NavLink to="/my-import">My Imports</NavLink></li>
-            <li><NavLink to="/add-export">Add Export</NavLink></li>
-          </ul>
-        </div>
+        {/* RIGHT: User & Theme */}
+        <div className="ml-auto flex items-center gap-4">
+          <Link
+            to="/add-export"
+            className="hidden sm:flex items-center gap-2 px-4 py-1.5 border-2 border-black dark:border-white text-xs text-white font-black uppercase hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all"
+          >
+            <PlusCircle size={14} />
+            Post Deal
+          </Link>
 
-        {/* END */}
-        <div className="navbar-end">
+          <div className="h-6 w-px bg-gray-200 dark:bg-white/10 mx-2 hidden sm:block"></div>
+
+          <button
+            onClick={toggleTheme}
+            className="p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-white/5 rounded-full transition-colors"
+          >
+            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+
           {user ? (
-            <div className="dropdown dropdown-end z-10">
+            <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle avatar"
+                className="group flex items-center gap-3 pl-2"
               >
-                <div className="w-10 rounded-full">
+                <div className="w-9 h-9 border border-black dark:border-wh p-0.5">
                   <img
-                    alt="User Profile"
-                    src={user.photoURL || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}
+                    className="w-full h-full rounded-full "
+                    src={
+                      user.photoURL ||
+                      "https://api.dicebear.com/7.x/initials/svg?seed=User"
+                    }
+                    alt="User"
                   />
                 </div>
               </div>
-
               <ul
-                tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-base-100 text-black rounded-box mt-3 w-52 p-2 shadow"
+                tabIndex={0}
+                className="dropdown-content mt-4 z-[1] menu p-2 shadow-xl bg-white dark:bg-[#111] border border-gray-200 dark:border-white/10 w-52 rounded-none"
               >
-                <li>
-                  <Link to="/my-profile" className="justify-between">
-                    Profile <span className="badge">New</span>
+                <li className="p-3 text-[10px] font-bold text-white uppercase tracking-widest">
+                  <Link
+                    to="/dashboard"
+                    className="rounded-none text-xs font-bold uppercase"
+                  >
+                    Dashboard
+                  </Link>
+                  
+                </li>
+                <li className="text-white ">
+                  <Link
+                    to="/my-profile"
+                    className="rounded-none text-xs font-bold uppercase"
+                  >
+                    My Account
                   </Link>
                 </li>
-
-                {/* THEME TOGGLE */}
-                <li>
-                  <button
-                    onClick={toggleTheme}
-                    className="flex items-center gap-2"
+                <li className="text-white ">
+                  <Link
+                    to="/settings"
+                    className="rounded-none text-xs font-bold uppercase"
                   >
-                    {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-                    {theme === "dark" ? "Light Mode" : "Dark Mode"}
-                  </button>
+                    Activity Log
+                  </Link>
                 </li>
-
-                <li>
-                  <button onClick={handelLogout}>Logout</button>
+                <li className="mt-2 border-t border-gray-100 dark:border-white/10">
+                  <button
+                    onClick={() => singOut()}
+                    className="rounded-none text-xs font-bold uppercase text-red-500"
+                  >
+                    <LogOut size={14} /> Sign Out
+                  </button>
                 </li>
               </ul>
             </div>
           ) : (
-            <Link className="text-bold btn" to="/login">
-              <CircleUser /> Log In
+            <Link
+              to="/login"
+              className="text-xs uppercase tracking-widest border-b-2  border-white pb-1 text-white font-bold hover:text-gray-500 transition-colors"
+            >
+              Login
             </Link>
           )}
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

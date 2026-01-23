@@ -58,7 +58,7 @@ const HomeSlider = () => {
                 {/* 2. Right Image: The "Focus" Layer with Clip-Path */}
                 <div 
                   className="hidden md:block absolute right-0 top-0 w-1/2 h-full z-10 overflow-hidden"
-                  style={{ clipPath: "polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
+                  style={{ clipPath: "polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
                 >
                   <img
                     src={slide.rightImage}

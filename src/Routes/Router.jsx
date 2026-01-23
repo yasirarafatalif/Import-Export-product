@@ -14,6 +14,7 @@ import Pet from "../Pages/Pet";
 import MyImportCardDetalis from "../Pages/MyImportCardDetalis/MyImportCardDetalis";
 import MyProfile from "../Pages/MyProfile/MyProfile";
 import ErrorPage from "../Pages/ErrorPages/ErrorPage";
+import DashboardLayOut from "../Pages/DashboardLayOut/Dashboard/DashboardLayOut";
 
 
 const Router = createBrowserRouter([
@@ -68,6 +69,17 @@ const Router = createBrowserRouter([
                 path: "*", Component: ErrorPage
             }
 
+
+        ]
+    },
+    {
+        path: '/dashboard', Component: DashboardLayOut,
+        children: [
+             {
+                index: true, Component: DashboardLayOut,
+               
+
+            },
 
         ]
     }
