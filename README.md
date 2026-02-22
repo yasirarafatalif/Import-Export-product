@@ -3,7 +3,7 @@ This project is a web application through which users can view various products,
 
 ---
 
-## ✨ Key Features
+## ✨ Key Feature
 
 ### **Extensive Catalog**
 
