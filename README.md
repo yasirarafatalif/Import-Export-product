@@ -1,4 +1,4 @@
-# 📦 Import-Exports: Product Exchange Plafro
+# 📦 Import-Exports: Product Exchange Plafrom
 This project is a web application through which users can view various products, **import** them for personal use, and **export** (sell or supply) new products to the platform.
 
 ---
